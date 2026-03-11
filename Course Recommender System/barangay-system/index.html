@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login - Barangay Management System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-body">
+
+<div class="login-container">
+
+<div class="login-left">
+<div class="branding">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFYVJ9MfdGmEWsys-oyTBSJRc65f-sa4J6rw&s" class="logo">
+<h1>Barangay Management System</h1>
+<p>Providing efficient, transparent, and secure digital community services.</p>
+</div>
+</div>
+
+<div class="login-right">
+<div class="login-form">
+
+<h2>Welcome Back</h2>
+
+<form method="POST" action="login.php">
+
+<label>Username</label>
+<input type="text" name="username" placeholder="Enter username" required>
+
+<label>Password</label>
+<input type="password" name="password" placeholder="Enter password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<br>
+
+<a href="register.php">
+<button class="register-btn">Create Account</button>
+</a>
+
+<?php
+if(isset($_GET['error'])){
+echo "<p class='error'>Invalid Login</p>";
+}
+?>
+
+<div class="login-footer">
+Barangay Information System © 2026
+</div>
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

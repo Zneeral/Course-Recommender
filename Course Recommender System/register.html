@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register - CourseMatch</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+<div class="wrapper">
+
+<!-- Left Section -->
+<div class="left">
+
+    <div class="logo">
+        <img src="images/logo.png" alt="CourseMatch Logo">
+    </div>
+
+    <h1>Join CourseMatch</h1>
+    <p>
+        Create your account and discover the college program that best fits
+        your interests, personality, and career goals.
+    </p>
+
+</div>
+
+<!-- Right Section -->
+<div class="right">
+
+    <div class="form-box">
+
+        <div class="form-title">Create Account</div>
+        <div class="form-sub">Start your career journey</div>
+
+        <div class="input-group">
+            <span>👤</span>
+            <input id="name" placeholder="Full Name">
+        </div>
+
+        <div class="input-group">
+            <span>📧</span>
+            <input id="email" placeholder="Email">
+        </div>
+
+        <div class="input-group">
+            <span>🔒</span>
+            <input id="password" type="password" placeholder="Password">
+        </div>
+
+        <div class="input-group">
+            <span>🎓</span>
+            <select id="strand">
+                <option value="">Select Strand</option>
+                <option value="STEM">STEM</option>
+                <option value="ABM">ABM</option>
+                <option value="HUMSS">HUMSS</option>
+            </select>
+        </div>
+
+        <button onclick="register()">Register</button>
+
+        <div class="links">
+            <p>Already have an account? <a href="index.html">Login</a></p>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

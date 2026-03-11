@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Career Results</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="sidebar">
+<h2>🎓 CourseMatch</h2>
+<a href="dashboard.html"><span>📊</span> Assessment</a>
+<a href="result.html"><span>🎯</span> Recommendations</a>
+<a href="#" onclick="logout()"><span>🚪</span> Logout</a>
+</div>
+
+<div class="content">
+
+<div class="page-header">
+<h1>Your Career Report</h1>
+<p>Based on your personality assessment</p>
+</div>
+
+<div class="card">
+<h3>Your Personality Insight</h3>
+<p id="personalityInsight"></p>
+</div>
+
+<div class="card">
+<h3>Your Personality Profile</h3>
+<canvas id="riasecChart"></canvas>
+</div>
+
+<div class="card">
+<h3>Recommended Programs</h3>
+<div id="courseContainer"></div>
+</div>
+
+</div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+let user=JSON.parse(localStorage.getItem("currentUser"));
+
+if(!user){
+window.location="index.html";
+}
+
+let score=user.riasec;
+
+/* INSIGHT TEXT */
+
+let insightText = {
+
+R:"You prefer hands-on activities and practical environments.",
+I:"You are analytical and enjoy solving complex problems.",
+A:"You are creative and enjoy expressing ideas visually.",
+S:"You enjoy helping others and making an impact.",
+E:"You enjoy leadership and business strategy.",
+C:"You enjoy structured work and organized systems."
+
+};
+
+document.getElementById("personalityInsight").innerText =
+insightText[user.personality];
+
+
+/* RADAR CHART */
+
+new Chart(document.getElementById("riasecChart"),{
+
+type:"radar",
+
+data:{
+labels:["Realistic","Investigative","Artistic","Social","Enterprising","Conventional"],
+
+datasets:[{
+
+label:"Personality Profile",
+
+data:[score.R,score.I,score.A,score.S,score.E,score.C]
+
+}]
+
+}
+
+});
+
+
+/* COURSE DATABASE */
+
+const courses=[
+
+{name:"BS Computer Science",traits:{I:3,C:2}},
+{name:"BS Information Technology",traits:{I:2,C:2}},
+{name:"BS Computer Engineering",traits:{I:3,R:1}},
+{name:"BS Civil Engineering",traits:{R:3,I:1}},
+{name:"BS Architecture",traits:{A:3,R:2}},
+{name:"BS Nursing",traits:{S:3}},
+{name:"BS Medical Technology",traits:{I:3,S:1}},
+{name:"BA Psychology",traits:{S:3,I:1}},
+{name:"BA Communication",traits:{A:3,E:1}},
+{name:"BS Accountancy",traits:{C:3}},
+{name:"BS Hospitality Management",traits:{E:2,S:2}}
+
+];
+
+
+/* MATCH ALGORITHM */
+
+function match(course){
+
+let total=0;
+
+for(let t in course.traits){
+total+=course.traits[t]*(score[t]||0);
+}
+
+return total;
+
+}
+
+/* AI EXPLANATION */
+
+function explainCourse(){
+
+let explanation="";
+
+if(score.I>=3){
+explanation+="Your analytical thinking fits research and technology careers. ";
+}
+
+if(score.R>=2){
+explanation+="You enjoy practical problem solving and technical systems. ";
+}
+
+if(score.S>=2){
+explanation+="You show strong interest in helping people and teamwork. ";
+}
+
+if(score.A>=2){
+explanation+="Your creativity allows you to innovate and design solutions. ";
+}
+
+return explanation;
+
+}
+
+
+let results=courses.map(c=>({
+
+name:c.name,
+score:match(c)
+
+}));
+
+results.sort((a,b)=>b.score-a.score);
+
+let container=document.getElementById("courseContainer");
+
+results.slice(0,6).forEach((c,i)=>{
+
+let percent=Math.min(100,c.score*6);
+
+let label="Good Match";
+
+if(percent>90) label="Excellent Match ⭐";
+else if(percent>80) label="Strong Match";
+
+let badge="";
+
+if(i===0){
+badge="🏆 Best Match";
+}
+
+container.innerHTML+=`
+
+<div class="course-card">
+
+<h3>${c.name}</h3>
+
+<p class="confidence">${badge} ${label}</p>
+
+<p>Compatibility Score: ${percent}%</p>
+
+<div class="progress">
+<div class="progress-bar" style="width:${percent}%"></div>
+</div>
+
+<p>${explainCourse()}</p>
+
+</div>
+
+`;
+
+});
+
+</script>
+
+<script>
+document.body.style.opacity = 0;
+window.onload = () => {
+document.body.style.transition = "opacity 0.5s";
+document.body.style.opacity = 1;
+};
+</script>
+
+</body>
+</html>

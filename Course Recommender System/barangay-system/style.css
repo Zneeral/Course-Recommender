@@ -1,0 +1,346 @@
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* ===== LOGIN ===== */
+
+    .login-body {
+        height: 100vh;
+        background: linear-gradient(135deg, #1e40af, #0f172a);
+    }
+
+    .login-container {
+        display: flex;
+        height: 100vh;
+    }
+
+    /* LEFT SIDE */
+    .login-left {
+        flex: 1;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px;
+    }
+
+    .branding {
+        max-width: 420px;
+    }
+
+    .logo {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+        background: white;
+        padding: 6px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .login-left h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .login-left p {
+        font-size: 15px;
+        opacity: 0.9;
+    }
+
+    /* RIGHT SIDE */
+    .login-right {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f1f5f9;
+    }
+
+    .login-form {
+        width: 360px;
+        padding: 40px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .login-form h2 {
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        color: #64748b;
+        margin-bottom: 20px;
+    }
+
+    /* INPUTS */
+    .login-form input,
+    .login-form select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #cbd5e1;
+        transition: 0.2s;
+    }
+
+    .login-form input:focus,
+    .login-form select:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+    }
+
+    /* PASSWORD ICON */
+    .password-box {
+        position: relative;
+}
+
+.password-box input {
+    padding-right: 40px; /* space for eye icon */
+}
+
+.password-box span {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #64748b;
+    user-select: none;
+    transition: 0.2s;
+}
+
+.password-box span:hover {
+    color: #2563eb;
+}
+    
+
+    /* BUTTONS */
+    button {
+        padding: 12px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.2s;
+    }
+
+    .login-form button {
+        width: 100%;
+        margin-top: 5px;
+        background: #2563eb;
+        color: white;
+    }
+
+    .login-form button:hover {
+        background: #1d4ed8;
+    }
+
+    .register-btn {
+        background: #64748b;
+    }
+
+    .register-btn:hover {
+        background: #475569;
+    }
+
+    .error {
+        color: red;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    /* ===== DASHBOARD ===== */
+
+    .layout {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+        width: 230px;
+        background: #0f172a;
+        color: white;
+        padding: 20px;
+        box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar h2 {
+        margin-bottom: 30px;
+    }
+
+    .sidebar ul {
+        list-style: none;
+    }
+
+    .sidebar li {
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 6px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .sidebar li:hover {
+        background: #1e293b;
+    }
+
+    .sidebar li.active {
+        background: #2563eb;
+    }
+
+    /* MAIN AREA */
+    .main {
+        flex: 1;
+        padding: 30px;
+        background: #f1f5f9;
+    }
+
+    /* TOPBAR */
+    .topbar {
+        margin-bottom: 20px;
+    }
+
+    /* CARDS */
+    .card {
+        background: white;
+        padding: 25px;
+        width: 240px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+    }
+
+    .card p {
+        font-size: 32px;
+        color: #2563eb;
+        margin-top: 10px;
+    }
+
+    /* BOXES */
+    .box {
+        background: white;
+        padding: 25px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    /* FORM INPUTS */
+    .box input,
+    .box select {
+        padding: 10px;
+        margin: 5px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+    }
+
+    .box input:focus {
+        outline: none;
+        border-color: #2563eb;
+    }
+
+    /* TABLE */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th {
+        background: #2563eb;
+        color: white;
+    }
+
+    th, td {
+        padding: 12px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    tr:hover {
+        background: #f8fafc;
+    }
+
+    /* ACTION BUTTONS */
+    .edit-btn {
+        background: #10b981;
+    }
+
+    .delete-btn {
+        background: #ef4444;
+    }
+
+    /* ANIMATION */
+    #dashboardSection,
+    #residentSection {
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== DARK MODE ===== */
+
+    .dark-mode .main {
+        background: #020617;
+    }
+
+    .dark-mode .box,
+    .dark-mode .card {
+        background: #1e293b;
+        color: white;
+    }
+
+    .dark-mode table {
+        background: #1e293b;
+        color: white;
+    }
+
+    .dark-mode th {
+        background: #334155;
+    }
+    .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+/* ===== ROLE BADGE ===== */
+.role-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.admin-badge {
+    background: #2563eb;
+}
+
+.staff-badge {
+    background: #64748b;
+}
+

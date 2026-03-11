@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Career Assessment</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="sidebar">
+<h2>🎓 CourseMatch</h2>
+
+<a href="dashboard.html"><span>📊</span> Assessment</a>
+<a href="result.html"><span>🎯</span> Recommendations</a>
+<a href="#" onclick="logout()"><span>🚪</span> Logout</a>
+</div>
+
+<div class="content">
+
+<div class="page-header">
+<h1 id="welcome"></h1>
+<p>Answer each question honestly to discover your ideal college program.</p>
+</div>
+
+<div class="card assessment-card">
+
+<div class="progress">
+<div id="progressBar"></div>
+</div>
+
+<h2 id="questionText"></h2>
+
+<div class="answers">
+<button onclick="selectAnswer(event,'agree')">👍 Agree</button>
+<button onclick="selectAnswer(event,'neutral')">🤔 Neutral</button>
+<button onclick="selectAnswer(event,'disagree')">👎 Disagree</button>
+</div>
+
+<div class="nav-buttons">
+<button onclick="prevQuestion()">Previous</button>
+<button onclick="nextQuestion()">Next</button>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+let user = JSON.parse(localStorage.getItem("currentUser"));
+
+if(!user){
+window.location="index.html";
+}else{
+document.getElementById("welcome").innerText="Welcome, "+user.name;
+}
+
+const questions=[
+
+{q:"I enjoy repairing machines.",type:"R"},
+{q:"I like building things.",type:"R"},
+{q:"I prefer hands-on work.",type:"R"},
+
+{q:"I enjoy solving complex problems.",type:"I"},
+{q:"I like doing scientific research.",type:"I"},
+{q:"I enjoy analyzing data.",type:"I"},
+
+{q:"I enjoy drawing or creative design.",type:"A"},
+{q:"I like expressing ideas creatively.",type:"A"},
+{q:"I enjoy making videos or digital media.",type:"A"},
+
+{q:"I enjoy helping people.",type:"S"},
+{q:"I enjoy teaching others.",type:"S"},
+{q:"I prefer working with people.",type:"S"},
+
+{q:"I enjoy leading projects.",type:"E"},
+{q:"I like business activities.",type:"E"},
+{q:"I enjoy persuading people.",type:"E"},
+
+{q:"I enjoy organizing data.",type:"C"},
+{q:"I enjoy working with numbers.",type:"C"},
+{q:"I prefer structured work.",type:"C"}
+
+];
+
+let current=0;
+let answers=[];
+
+function loadQuestion(){
+
+document.getElementById("questionText").innerText=
+questions[current].q;
+
+let progress=((current+1)/questions.length)*100;
+
+document.getElementById("progressBar").style.width=
+progress+"%";
+
+}
+
+function selectAnswer(event,value){
+
+answers[current]=value;
+
+let buttons=document.querySelectorAll(".answers button");
+
+buttons.forEach(btn=>btn.classList.remove("selected"));
+
+event.target.classList.add("selected");
+
+setTimeout(()=>{nextQuestion()},300);
+
+}
+
+function nextQuestion(){
+
+if(current<questions.length-1){
+current++;
+loadQuestion();
+}else{
+finishAssessment();
+}
+
+}
+
+function prevQuestion(){
+
+if(current>0){
+current--;
+loadQuestion();
+}
+
+}
+
+function finishAssessment(){
+
+let score={R:0,I:0,A:0,S:0,E:0,C:0};
+
+answers.forEach((a,i)=>{
+
+if(a==="agree"){
+let type=questions[i].type;
+score[type]++;
+}
+
+});
+
+let sorted=
+Object.entries(score).sort((a,b)=>b[1]-a[1]);
+
+user.personality=sorted[0][0];
+user.riasec=score;
+
+localStorage.setItem("currentUser",JSON.stringify(user));
+
+window.location="result.html";
+
+}
+
+loadQuestion();
+
+</script>
+
+<script>
+document.body.style.opacity = 0;
+window.onload = () => {
+document.body.style.transition = "opacity 0.5s";
+document.body.style.opacity = 1;
+};
+</script>
+
+</body>
+</html>
